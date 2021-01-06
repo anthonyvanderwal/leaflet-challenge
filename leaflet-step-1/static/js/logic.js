@@ -66,7 +66,7 @@ d3.json(queryUrl, data => {
     var myMap = L.map('map', {
         center: [0, 180],
         maxBounds: bounds,
-        zoom: 2,
+        zoom: 3,
         layers: [lightmap, gjLayer]
     });
 
@@ -79,18 +79,19 @@ d3.json(queryUrl, data => {
 
     legend.onAdd = function (myMap) {
         var div = L.DomUtil.create('div', 'info legend');
-        var limits = ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7+'];
-        var colors = ['#ff0000', '#ff4e00', '#ff7000', '#ff8c00', '#e8fb43', '#cef761', '#b2f27a', '#90ee90'];
-        var labels = [];
+        var limits = [0, 1, 2, 3, 4, 5];
+        // var colors = ['#90ee90', '#bcf472', '#dffa4e', '#ff8300', '#ff5a00', '#ff0000'];
+        // var labels = [];
 
         // Add min & max
-        div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> <div class="max">' + limits[limits.length - 1] + '</div></div>';
-        limits.forEach( (limit, index) => { labels.push('<li style="background-color: ' + colors[index] + '"></li>') });
-        div.innerHTML += '<ul>' + labels.join('') + '</ul>';
+        // div.innerHTML = '<div class="labels"><div class="min">' + limits[0] + '</div> <div class="max">' + limits[limits.length - 1] + '</div></div>';
+        // limits.forEach( (limit, index) => { labels.push('<li style="background-color: ' + colors[index] + '"></li>' + limits[index] ) });
+        // div.innerHTML += '<ul>' + labels.join('') + '</ul>';
 
-        console.log(limits);
-        console.log(colors);
-        console.log(labels);
+        for (var i = 0; i < limits.length; i++) {
+            div.innerHTML += '<i style=background:' + getColour(limits[i] + 1) + '></i> ' + 
+                             limits[i] + (limits[i + 1] ? '&ndash;' + limits[i + 1] + '<br>' : '+');
+            };
 
         return div;
     };
@@ -102,12 +103,10 @@ d3.json(queryUrl, data => {
 
 
 function getColour(d) {
-return d > 7 ? "#ff0000"
-    : d > 6 ? "#ff4e00"
-    : d > 5 ? "#ff7000"
-    : d > 4 ? "#ff8c00"
-    : d > 3 ? "#e8fb43"
-    : d > 2 ? "#cef761"
-    : d > 1 ? "#b2f27a"
-    : "#90ee90";
+  return d > 5 ? "#ff0000" :
+         d > 4 ? "#ff5a00" :
+         d > 3 ? "#ff8300" :
+         d > 2 ? "#dffa4e" :
+         d > 1 ? "#bcf472" :
+                 "#90ee90";
 };
