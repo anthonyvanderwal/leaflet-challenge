@@ -11,7 +11,7 @@ UWA Boot Camp Data Analytics - homework assignment 17 - Leaflet - USGS Earthquak
 ---
 ### USGS Earthquakes - last 30 days
 - [website](https://anthonyvanderwal.github.io/leaflet-challenge/leafletEarthquakes/) deployed on GitHub Pages.
-- [javascript](./leafletEarthquakes/static/js/logic.js) app to render plot.
+- [javascript](./leafletEarthquakes/static/js/logic.js) app to render map.
 - [html](./leafletEarthquakes/index.html) template for website.
 - [css](./leafletEarthquakes/static/css/style.css) with style for template.
 
