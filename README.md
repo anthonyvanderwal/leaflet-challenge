@@ -17,7 +17,6 @@ UWA Boot Camp Data Analytics - homework assignment 17 - Leaflet - USGS Earthquak
 
 ---
 ### Screenshot
-**Website**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="earthquakes"
      src="./leafletEarthquakes/static/img/leaflet-earthquakes.png" /></kbd>
