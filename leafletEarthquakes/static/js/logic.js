@@ -20,18 +20,6 @@ d3.json(queryUrl, data => {
                 ${new Date(layer.feature.properties.time).toUTCString()}`
     );
 
-  // streetmap layer
-  var streetmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    bounds: [[-90, -180], [90, 180]],
-    noWrap: true,
-    id: 'mapbox/streets-v11',
-    accessToken: API_KEY
-  });
-  
   // lightmap layer
   var lightmap = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href=\'https://www.openstreetmap.org/\'>OpenStreetMap</a> contributors, <a href=\'https://creativecommons.org/licenses/by-sa/2.0/\'>CC-BY-SA</a>, Imagery © <a href=\'https://www.mapbox.com/\'>Mapbox</a>',
@@ -52,11 +40,23 @@ d3.json(queryUrl, data => {
     accessToken: API_KEY
   });
 
+  // streetmap layer
+  var streetmap = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+    tileSize: 512,
+    maxZoom: 18,
+    zoomOffset: -1,
+    bounds: [[-90, -180], [90, 180]],
+    noWrap: true,
+    id: 'mapbox/streets-v11',
+    accessToken: API_KEY
+  });
+
   // basemaps object to hold all layers
   var baseMaps = {
-    'Street Map': streetmap,
     'Light Map': lightmap,
     'Dark Map': darkmap
+    'Street Map': streetmap,
   };
 
   // overlay object to hold data layer
@@ -74,7 +74,7 @@ d3.json(queryUrl, data => {
     center: [0, 0],
     maxBounds: bounds,
     zoom: 2,
-    layers: [streetmap, gjLayer]
+    layers: [lightmap, gjLayer]
   });
 
   // layer control containing basemaps and overlay
