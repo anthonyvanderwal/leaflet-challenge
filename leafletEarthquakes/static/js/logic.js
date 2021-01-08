@@ -55,8 +55,8 @@ d3.json(queryUrl, data => {
   // basemaps object to hold all layers
   var baseMaps = {
     'Light Map': lightmap,
-    'Dark Map': darkmap
-    'Street Map': streetmap,
+    'Dark Map': darkmap,
+    'Street Map': streetmap
   };
 
   // overlay object to hold data layer
