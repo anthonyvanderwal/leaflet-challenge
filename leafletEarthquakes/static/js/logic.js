@@ -17,7 +17,7 @@ d3.json(queryUrl, data => {
     }
   }).bindPopup( layer => `Magnitude: <b>${layer.feature.properties.mag}</b><br>
                 ${layer.feature.properties.place}<br>
-                ${Date(layer.feature.properties.time)}`
+                ${new Date(layer.feature.properties.time).toUTCString()}`
     );
 
   // streetmap layer
@@ -115,3 +115,21 @@ function getColour(d) {
          d >= 1 ? "#bcf472" :
                   "#90ee90";
 };
+
+function timestampToDate (ts) {
+
+// var date = new Date(unix_timestamp * 1000);
+// Hours part from the timestamp
+var hours = ts.getHours();
+// Minutes part from the timestamp
+var minutes = "0" + ts.getMinutes();
+// Seconds part from the timestamp
+var seconds = "0" + ts.getSeconds();
+
+// Will display time in 10:30:23 format
+var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+console.log(formattedTime);
+return formattedTime
+  
+ };
